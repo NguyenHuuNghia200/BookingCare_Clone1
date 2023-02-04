@@ -1,0 +1,197 @@
+.slick-disabled{
+    display: none !important;
+}
+.section-share {
+
+
+    &.section-specialty {
+        background: #f5f5f5;
+    }
+
+    &.section-outstandingdoctor {
+        background: white;
+    }
+
+    &.section-about {
+        background: white;
+        height: 650px;
+        border-bottom: 1px solid red;
+        border-top: 1px solid red;
+       
+    }
+
+    .section-body {
+
+        margin: 5px;
+
+        .section-customize {
+
+            .customize-border {
+                border: 1px solid #f5f5f5;
+                margin-right: 10px;
+            }
+
+            .bg-image {
+
+                width: 240px;
+                height: 150px;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-color: #eee !important;
+                background-size: cover !important;
+                border: 1px solid red;
+
+                &.section-specialty {
+                    background: url(../../assets/specialty/co-xuong-khop.jpg);
+                }
+
+                &.section-medicalfacility {
+                    background: url(../../assets/medical-facility/benh-vien-thu-cuc-1.jpg);
+                }
+
+                &.section-outstandingdoctor {
+                    //background: url(../../assets/OutStandingDoctor/anh-dai-dien-bs.jpg);
+                    height: 120px;
+                    width: 120px;
+
+                    border-radius: 50%;
+                    margin: auto;
+
+                }
+
+                &.section-hand-book {
+                    background: url(../../assets/handbook/nha-khoa-ha-noi-trong-rang-chuyen-sau-uy-tin-tai-ha-noibookingcare.png);
+                    margin: auto;
+                }
+
+            }
+        }
+
+
+    }
+}
+
+.section-outstandingdoctor {
+    .outer-bg {
+        display: flex;
+        flex-direction: column;
+
+        padding: 20px 0;
+    }
+}
+
+.section-share {
+    height: 330px;
+
+    background: #f5f5f5;
+
+    .section-container {
+        margin: 0 100px;
+
+        display: flex;
+        flex-direction: column;
+
+        .section-header {
+            height: 60px;
+
+            padding-top: 30px;
+            margin-bottom: 30px;
+
+            .title-section {
+                font-size: 18px;
+                font-weight: bolder;
+
+            }
+
+            .btn-section {
+                float: right;
+                display: block;
+                border: none;
+                outline: none;
+                padding: 10px 15px;
+                background: #ebebeb;
+                cursor: pointer;
+
+                &:hover {
+                    color: #fff;
+                    background: #f7d880;
+                }
+            }
+        }
+
+
+    }
+
+
+
+
+
+}
+
+.slick-prev {
+    color: red !important;
+
+    background: white !important;
+    height: 48px !important;
+    width: 44px !important;
+    left: 0 !important;
+    z-index: 1000 !important;
+
+    &:hover {
+        background: grey !important;
+    }
+}
+
+.slick-next {
+
+    color: red !important;
+    background: white !important;
+    height: 48px !important;
+    width: 44px !important;
+
+    &:hover {
+        background: grey !important;
+    }
+}
+
+.slick-next::before {
+
+    font-family: slick !important;
+    color: red !important;
+}
+
+.slick-prev::before {
+    font-family: slick !important;
+    color: red !important
+}
+
+.home-footer {
+    text-align: center;
+    padding-top: 8px;
+
+}
+.section-about{
+    padding: 10px 100px;
+
+    .section-about-header {
+        padding-bottom: 30px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .section-about-content{
+        display: flex;
+        width: 100%;
+        gap: 15px;
+        .content-left{
+            width: 60%;
+        }
+        .content-right{
+            width: 40%;
+            p{
+                text-align: justify;
+                font-style: italic;
+                padding-top: 15px;
+            }
+        }
+    }
+}
