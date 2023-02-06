@@ -103,11 +103,8 @@ class TableManageUser extends Component {
 
                     </div>
                 </div>
-            {/* export default props => {
-            return (
+            
                 <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
-                );
-        }; */}
             </>
         );
     }
