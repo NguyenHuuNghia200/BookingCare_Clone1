@@ -29,6 +29,64 @@ let getAllDoctor = (limitinput) => {
         }
     })
 }
+let getlistDoctor = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let doctor = await db.User.findAll({
+                order: [['createdAt', 'DESC']],
+                where: { roleid: 'R2' },
+                attributes: {
+                    exclude: ["password", "image"],
+                },
+                include: [
+                    { model: db.Allcodes, as: 'positionIdData', attributes: ['valueEn', 'valueVn'] },
+                    { model: db.Allcodes, as: 'genderData', attributes: ['valueEn', 'valueVn'] }
+                ],
+                raw: true,
+                nest: true
+
+            })
+            console.log(doctor)
+            resolve({
+                errCode: 0,
+                data: doctor
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+let getsaveinfoDoctor = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            console.log('getsaveinfoDoctor',data)
+            console.log(data.DoctorId)
+            if (!data.DoctorId || !data.contentHtml || !data.contentMarkdown) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing param'
+                })
+            } else {
+                await db.markdown.create({
+                    contentHtml:data.contentHtml,
+                    contentMarkdown:data.contentMarkdown,
+                    description:data.description,
+                    DoctorId:data.id,
+                })
+            }
+
+            resolve({
+                errCode: 0,
+                errMessage: 'save complete'
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     getAllDoctor: getAllDoctor,
+    getlistDoctor: getlistDoctor,
+    getsaveinfoDoctor: getsaveinfoDoctor
+
 }

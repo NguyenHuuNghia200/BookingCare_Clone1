@@ -1,4 +1,4 @@
-import db from '../models/index.js'
+
 import DoctorServices from '../services/DoctorServices'
 
 let handlegetAllDoctor = async (req, res) => {
@@ -9,21 +9,18 @@ let handlegetAllDoctor = async (req, res) => {
         console.log(limit)
         if (!limit) limit = 10
         try {
-            let data= await DoctorServices.getAllDoctor(+limit)
+            let data = await DoctorServices.getAllDoctor(+limit)
             return res.status(200).json(
                 data
             )
         } catch (error) {
             console.log(error)
             return res.status(200).json({
-                errCode:-1,
-                errMessage:'Error from server'
+                errCode: -1,
+                errMessage: 'Error from server'
             })
         }
-        let data = await UserServices.getAllDoctor()
-        return res.status(200).json({
-            data
-        })
+        
 
 
     } catch (e) {
@@ -33,6 +30,45 @@ let handlegetAllDoctor = async (req, res) => {
 
 
 }
+let handleListDoctor = async (req, res) => {
+    try {
+        try {
+            let data = await DoctorServices.getlistDoctor()
+            return res.status(200).json(
+                data
+            )
+        } catch (error) {
+            console.log(error)
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: 'Error from server'
+            })
+        }
+    } catch (e) {
+        console.log(e)
+    }
+}
+let handleSaveinfoDoctor = async (req, res) => {
+    try {
+        try {
+            console.log('req.body',req.body)
+            let data = await DoctorServices.getsaveinfoDoctor(req.body)
+            return res.status(200).json(
+                data
+            )
+        } catch (error) {
+            console.log(error)
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: 'Error from server'
+            })
+        }
+    } catch (e) {
+        console.log(e)
+    }
+}
 module.exports = {
     handlegetAllDoctor: handlegetAllDoctor,
+    handleListDoctor: handleListDoctor,
+    handleSaveinfoDoctor:handleSaveinfoDoctor
 }
