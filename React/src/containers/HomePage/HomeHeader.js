@@ -11,10 +11,8 @@ class HomeHeader extends Component {
         this.props.ChangelanguageApp(language)
     }
     render() {
-        console.log('check props', this.props)
         let languages = this.props.language
         let userInfo = this.props.userInfo
-        console.log('check languages', languages, userInfo)
         return (
             <>
                 <div className='home-header-container'>
@@ -67,60 +65,62 @@ class HomeHeader extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='home-header-banner'>
-                    <div className='content-up'>
-                        <div className='title1'>NỀN TẢNG Y TẾ</div>
-                        <div className='title2'>CHĂM SÓC SỨC KHỎE TOÀN DIỆN</div>
-                        <div className='search'>
+                {this.props.Isshowbanner === true &&
+                    < div className='home-header-banner'>
+                        <div className='content-up'>
+                            <div className='title1'>NỀN TẢNG Y TẾ</div>
+                            <div className='title2'>CHĂM SÓC SỨC KHỎE TOÀN DIỆN</div>
+                            <div className='search'>
 
-                            <i className="fas fa-search"></i>
-                            <input type='text' placeholder='tim` .....' />
+                                <i className="fas fa-search"></i>
+                                <input type='text' placeholder='tim` .....' />
+                            </div>
                         </div>
-                    </div>
 
-                    <div className='content-dowm'>
-                        <div className='options'>
-                            <div className='options-child '>
-                                <div className='icon-child'>
-                                    <i className="fas fa-hospital"></i>
+                        <div className='content-dowm'>
+                            <div className='options'>
+                                <div className='options-child '>
+                                    <div className='icon-child'>
+                                        <i className="fas fa-hospital"></i>
+                                    </div>
+                                    <div className='text-child'>Khám chuyên Khoa</div>
                                 </div>
-                                <div className='text-child'>Khám chuyên Khoa</div>
-                            </div>
-                            <div className='options-child '>
-                                <div className='icon-child'>
-                                    <i className="fas fa-phone"></i>
+                                <div className='options-child '>
+                                    <div className='icon-child'>
+                                        <i className="fas fa-phone"></i>
+                                    </div>
+                                    <div className='text-child'>Khám từ xa</div>
                                 </div>
-                                <div className='text-child'>Khám từ xa</div>
-                            </div>
-                            <div className='options-child '>
-                                <div className='icon-child'>
-                                    <i className="fas fa-hospital-alt"></i>
+                                <div className='options-child '>
+                                    <div className='icon-child'>
+                                        <i className="fas fa-hospital-alt"></i>
+                                    </div>
+                                    <div className='text-child'>khám tổng quát</div>
                                 </div>
-                                <div className='text-child'>khám tổng quát</div>
-                            </div>
-                            <div className='options-child '>
-                                <div className='icon-child'>
-                                    <i className="fas fa-flask"></i>
+                                <div className='options-child '>
+                                    <div className='icon-child'>
+                                        <i className="fas fa-flask"></i>
+                                    </div>
+                                    <div className='text-child'>Xét nghiệm y học</div>
                                 </div>
-                                <div className='text-child'>Xét nghiệm y học</div>
-                            </div>
-                            <div className='options-child '>
-                                <div className='icon-child'>
-                                    <i className="fas fa-user-md"></i>
+                                <div className='options-child '>
+                                    <div className='icon-child'>
+                                        <i className="fas fa-user-md"></i>
+                                    </div>
+                                    <div className='text-child'>Sức Khỏe tinh thần</div>
                                 </div>
-                                <div className='text-child'>Sức Khỏe tinh thần</div>
-                            </div>
-                            <div className='options-child '>
-                                <div className='icon-child'>
-                                    <i className="fas fa-briefcase-medical"></i>
+                                <div className='options-child '>
+                                    <div className='icon-child'>
+                                        <i className="fas fa-briefcase-medical"></i>
+                                    </div>
+                                    <div className='text-child'>Khám nha khoa</div>
                                 </div>
-                                <div className='text-child'>Khám nha khoa</div>
-                            </div>
 
+                            </div>
                         </div>
-                    </div>
 
-                </div>
+                    </div>
+                }
             </>
         );
     }

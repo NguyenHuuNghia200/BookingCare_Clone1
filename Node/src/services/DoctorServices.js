@@ -59,7 +59,7 @@ let getlistDoctor = () => {
 let getsaveinfoDoctor = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            console.log('getsaveinfoDoctor',data)
+            console.log('getsaveinfoDoctor', data)
             console.log(data.DoctorId)
             if (!data.DoctorId || !data.contentHtml || !data.contentMarkdown) {
                 resolve({
@@ -68,10 +68,10 @@ let getsaveinfoDoctor = (data) => {
                 })
             } else {
                 await db.markdown.create({
-                    contentHtml:data.contentHtml,
-                    contentMarkdown:data.contentMarkdown,
-                    description:data.description,
-                    DoctorId:data.id,
+                    contentHtml: data.contentHtml,
+                    contentMarkdown: data.contentMarkdown,
+                    description: data.description,
+                    DoctorId: data.DoctorId,
                 })
             }
 
@@ -84,9 +84,49 @@ let getsaveinfoDoctor = (data) => {
         }
     })
 }
+
+let getinfoDoctor = (inputid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            console.log('id1', inputid)
+            let doctor = await db.User.findAll({
+
+                order: [['createdAt', 'DESC']],
+                where: { id: inputid },
+                attributes: {
+                    exclude: ["password"],
+                },
+                include: [
+                    {
+                        model: db.markdown,
+                        attributes: ['contentHtml', 'contentMarkdown', 'description', 'DoctorId']
+                    },
+                    { model: db.Allcodes, as: 'positionIdData', attributes: ['valueEn', 'valueVn'] },
+                    { model: db.Allcodes, as: 'genderData', attributes: ['valueEn', 'valueVn'] }
+                    // { model: db.Allcodes, as: 'genderData', attributes: ['valueEn', 'valueVn'] }
+                ],
+                raw: true,
+                nest: true
+            })
+
+            if (doctor && doctor.image) {
+                doctor.image = new Buffer(doctor.image, 'base64').toString('binary');
+            }
+
+            resolve({
+                errCode: 0,
+                data:doctor
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     getAllDoctor: getAllDoctor,
     getlistDoctor: getlistDoctor,
-    getsaveinfoDoctor: getsaveinfoDoctor
+    getsaveinfoDoctor: getsaveinfoDoctor,
+    getinfoDoctor: getinfoDoctor,
 
 }

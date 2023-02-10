@@ -97,7 +97,6 @@ class Doctormanager extends Component {
         })
     }
     render() {
-
         return (
             <>
 

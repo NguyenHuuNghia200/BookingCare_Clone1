@@ -1,4 +1,5 @@
-import { getAllCodeService, CreateUserApi, GetAllUserApi, DeleteUserApi, EditUserApi, getTopDoctorService,getListDoctor,getSaveinFoDoctor } from '../../services/UserService';
+import { getAllCodeService, CreateUserApi, GetAllUserApi, DeleteUserApi, EditUserApi, getTopDoctorService,
+    getListDoctor,getSaveinFoDoctor,getInfoFoDoctor } from '../../services/UserService';
 import actionTypes from './actionTypes';
 import { toast, Toast } from 'react-toastify';
 // export const adminLoginSuccess = (adminInfo) => ({
@@ -316,3 +317,33 @@ export const fetchSaveDoctor = (datainput) => {
 
     // type: actionTypes.FETCH_GENDER_START
 }
+
+// export const fetchGetDoctor = (datainput) => {
+//     return async (dispatch, getState) => {
+//         try {
+//             let data = await getInfoFoDoctor(datainput)
+            
+//             if (data.errCode === 0) {
+//                 dispatch({
+//                     type: actionTypes.FETCH_GET_DOCTOR_SUCCESS,
+//                     infoDoctor:data
+//                 })
+
+//             } else {
+//                 console.log('failed1')
+//                 dispatch({
+//                     type: actionTypes.FETCH_GET_DOCTOR_FAILED
+//                 })
+//             }
+//         } catch (error) {
+//             console.log('failed2',error)
+//             toast.error('save info doctor complete')
+//             dispatch({
+
+//                 type: actionTypes.FETCH_GET_DOCTOR_FAILED
+//             })
+//         }
+//     }
+
+//     // type: actionTypes.FETCH_GENDER_START
+// }

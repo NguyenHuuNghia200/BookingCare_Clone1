@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Slider from "react-slick";
 import * as actions from '../../../store/actions'
 import { LANGUAGES } from '../../../utils';
+import { withRouter } from 'react-router-dom';
+import { path } from '../../../utils';
 class OutStandingDoctor extends Component {
     constructor(props) {
         super(props)
@@ -22,6 +24,9 @@ class OutStandingDoctor extends Component {
 
     componentDidMount() {
         this.props.loadTopDoctor()
+    }
+    hanhleViewDetailDoctor=(doctorData)=>{
+        this.props.history.push(`/detail_doctor/${doctorData.id}`)
     }
     render() {
         let Arrtopdoctor = this.state.Arrtopdoctor.data
@@ -46,10 +51,9 @@ class OutStandingDoctor extends Component {
                                         imagebase64=new Buffer(item.image,'base64').toString('binary');
                                         
                                     }
-                                    console.log(namevn)
-                                    console.log(item.positionIdData.valueVn)
+        
                                     return (
-                                        <div className='section-customize' key={index}>
+                                        <div className='section-customize' key={index} onClick={()=>this.hanhleViewDetailDoctor(item)}>
                                             <div className='customize-border'>
                                                 <div className='outer-bg'>
                                                     <div className='bg-image section-outstandingdoctor' 
@@ -89,4 +93,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor));

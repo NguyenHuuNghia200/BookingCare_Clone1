@@ -27,6 +27,11 @@ let initWebRoutes=(app)=>{
     router.get('/api/listDoctor',DoctorController.handleListDoctor)
 
     router.post('/api/Save-info-doctor',DoctorController.handleSaveinfoDoctor)
+
+    router.get('/api/get-info-doctor',DoctorController.handleGetinfoDoctor)
+
+
+
     return app.use("/",router)
 }
 module.exports=initWebRoutes
