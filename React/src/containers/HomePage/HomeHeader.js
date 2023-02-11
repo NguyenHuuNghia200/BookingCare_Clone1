@@ -5,10 +5,14 @@ import './HomeHeader.scss'
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../utils'
 import { ChangelanguageApp } from '../../store/actions/appActions';
+import { withRouter } from 'react-router-dom';
 class HomeHeader extends Component {
 
     changeLanguage = (language) => {
         this.props.ChangelanguageApp(language)
+    }
+    returntohome = () => {
+        this.props.history.push('/homepage')
     }
     render() {
         let languages = this.props.language
@@ -20,7 +24,7 @@ class HomeHeader extends Component {
                         <div className='left-content'>
 
                             <i className="fas fa-bars p-3"></i>
-                            <div className='logo'>
+                            <div className='logo' onClick={() => this.returntohome()}>
 
                             </div>
                         </div>
@@ -141,4 +145,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeHeader));

@@ -67,12 +67,31 @@ let getsaveinfoDoctor = (data) => {
                     errMessage: 'Missing param'
                 })
             } else {
-                await db.markdown.create({
-                    contentHtml: data.contentHtml,
-                    contentMarkdown: data.contentMarkdown,
-                    description: data.description,
-                    DoctorId: data.DoctorId,
-                })
+                if (data.action === 'create') {
+                    await db.markdown.create({
+                        contentHtml: data.contentHtml,
+                        contentMarkdown: data.contentMarkdown,
+                        description: data.description,
+                        DoctorId: data.DoctorId,
+                    })
+                    resolve({
+                        errCode: 0,
+                        errMessage: 'create complete'
+                    })
+                } else if (data.action === 'update') {
+                    let doctor = await db.markdown.findOne({
+                        where: { DoctorId: data.DoctorId },
+                        raw: false
+                    })
+                    doctor.contentHtml = data.contentHtml
+                    doctor.contentMarkdown = data.contentMarkdown
+                    doctor.description = data.description
+                    await doctor.save()
+                    resolve({
+                        errCode: 0,
+                        errMessage: 'update complete'
+                    })
+                }
             }
 
             resolve({
@@ -90,7 +109,7 @@ let getinfoDoctor = (inputid) => {
         try {
 
             console.log('id1', inputid)
-            let doctor = await db.User.findAll({
+            let doctor = await db.User.findOne({
 
                 order: [['createdAt', 'DESC']],
                 where: { id: inputid },
@@ -116,7 +135,7 @@ let getinfoDoctor = (inputid) => {
 
             resolve({
                 errCode: 0,
-                data:doctor
+                data: doctor
             })
         } catch (e) {
             reject(e)

@@ -10,7 +10,8 @@ import 'react-markdown-editor-lite/lib/index.css';
 import Select from 'react-select';
 // Register plugins if required
 // MdEditor.use(YOUR_PLUGINS_HERE);
-import { LANGUAGES } from '../../../utils';
+import { CRUD_ACTIONS, LANGUAGES } from '../../../utils';
+import { getInfoFoDoctor } from '../../../services/UserService';
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -32,18 +33,21 @@ class Doctormanager extends Component {
             contenthtml: '',
             selectedOption: '',
             description: '',
-            arrListdoctor: []
+            arrListdoctor: [],
+            CreateMarkdown: true
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.props.fetchListDoctorRedux()
         this.props.fetchAllUserRedux()
+
     }
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    async componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.listDoctor != this.props.listDoctor) {
             let arrDoctor = this.DatainputSelect(this.props.listDoctor)
             //let arrDoctor = this.props.listDoctor
+
             this.setState({
                 arrListdoctor: arrDoctor,
             })
@@ -77,19 +81,44 @@ class Doctormanager extends Component {
     }
     handleSavecontentMarkdown = () => {
         this.props.fetchSaveDoctor({
-            contentHtml:this.state.contenthtml,
-            contentMarkdown:this.state.contentmarkdown,
-            description:this.state.description,
-            DoctorId:this.state.selectedOption.value,
-
+            contentHtml: this.state.contenthtml,
+            contentMarkdown: this.state.contentmarkdown,
+            description: this.state.description,
+            DoctorId: this.state.selectedOption.value,
+            action: this.state.CreateMarkdown === true ? 'create' : 'update'
+        })
+        this.setState({
+            contenthtml: '',
+            contentmarkdown: '',
+            description: '',
+            selectedOption: ''
         })
         console.log(this.state)
     }
 
-    handleChange = selectedOption => {
+    handleChange = async selectedOption => {
         this.setState({ selectedOption }, () =>
             console.log(`Option selected:`, this.state.selectedOption)
         );
+
+
+        let res = await getInfoFoDoctor(selectedOption.value)
+        console.log('res1', res, res.data.markdown.contentHtml)
+        if (res && res.data && res.data.markdown) {
+            this.setState({
+                contenthtml: res.data.markdown.contentHtml,
+                contentmarkdown: res.data.markdown.contentMarkdown,
+                description: res.data.markdown.description,
+                CreateMarkdown: false
+            })
+        } else {
+            this.setState({
+                contenthtml: '',
+                contentmarkdown: '',
+                description: ''
+            })
+        }
+
     };
     handleOnChangeDesc = (event) => {
         this.setState({
@@ -118,6 +147,7 @@ class Doctormanager extends Component {
                         <div className='content-right form-group'>
                             <label>thong tin gioi thieu</label>
                             <textarea className='form-control' rows={4}
+                                value={this.state.description || ''}
                                 onChange={(event) => this.handleOnChangeDesc(event)}>
 
                             </textarea>
@@ -125,10 +155,15 @@ class Doctormanager extends Component {
 
                     </div>
                     <div className='manager-doctor-editer'>
-                        <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={this.handleEditorChange} />
+
+                        <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={this.handleEditorChange}
+                            value={this.state.contentmarkdown || ''} />
                     </div>
-                    <button className='btn btn-primary m-3'
-                        onClick={() => this.handleSavecontentMarkdown()}>luu thong tin</button>
+                    <button className={this.state.CreateMarkdown === true ? 'btn btn-primary m-3' : 'btn btn-warning m-3'}
+                        onClick={() => this.handleSavecontentMarkdown()}>
+
+                        {this.state.CreateMarkdown === true ? <span>tao thong tin</span> : <span>luu thong tin</span>}
+                    </button>
                 </div>
 
             </>
@@ -150,7 +185,7 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchListDoctorRedux: () => dispatch(actions.fetchListDoctor()),
         fetchAllUserRedux: () => dispatch(actions.fetchAllUserStart()),
-        fetchSaveDoctor:(data)=>dispatch(actions.fetchSaveDoctor(data))
+        fetchSaveDoctor: (data) => dispatch(actions.fetchSaveDoctor(data))
     };
 };
 

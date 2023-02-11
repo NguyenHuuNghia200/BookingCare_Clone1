@@ -1,5 +1,5 @@
 .doctor-detail-container {
-    height: 700px;
+    height: auto;
     margin: 0 100px;
     border: 1px solid red;
 
@@ -34,5 +34,6 @@
     }
     .detail-infor-doctor{
         margin: 30px 30px;
+        background-color: #ddd;
     }
 }

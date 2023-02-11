@@ -20,16 +20,17 @@ class DetailDoctor extends Component {
 
         if (this.props.match && this.props.match.params && this.props.match.params.id) {
             let doctor = await getInfoFoDoctor(this.props.match.params.id)
-            let imagetest = doctor.data[0].image
-            let image1 = ''
-            if (doctor.data[0] && doctor.data[0].image) {
-                image1 = new Buffer(imagetest, 'base64').toString('binary');
-            }
+            console.log(doctor)
+            let imagetest = doctor.data.image
+            // let image1 = ''
+            // if (doctor.data && doctor.data.image) {
+            //     image1 = new Buffer(imagetest, 'base64').toString('binary');
+            // }
 
-            console.log(image1)
+            // console.log(image1)
             this.setState({
-                infoDoctor: doctor.data[0],
-                image: image1
+                infoDoctor: doctor.data,
+                image: imagetest
             })
         }
     }
@@ -72,8 +73,8 @@ class DetailDoctor extends Component {
                     <div className='detail-infor-doctor'>
 
                         {infoDoctor1.markdown && infoDoctor1.markdown.contentHtml &&
-                            <div dangerouslySetInnerHTML={{ __html:  infoDoctor1.markdown.contentHtml }}>
-                                
+                            <div dangerouslySetInnerHTML={{ __html: infoDoctor1.markdown.contentHtml }}>
+
                             </div>
                         }
                     </div>

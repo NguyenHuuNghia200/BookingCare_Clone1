@@ -109,7 +109,7 @@ class UserRedux extends Component {
                 gender: '',
                 role: '',
                 avatar: '',
-                previewimage:'',
+                previewimage: '',
                 action: CRUD_ACTIONS.ADD
             })
         }
@@ -192,13 +192,13 @@ class UserRedux extends Component {
         })
     }
     handleEditUserfromParent = (user) => {
-        let imagebase64=''
-        console.log('user iamge',user.image)
-        if(user.image){
-            imagebase64=new Buffer(user.image,'base64').toString('binary');
-            
+        let imagebase64 = ''
+        console.log('user iamge', user.image)
+        if (user.image) {
+            imagebase64 = new Buffer(user.image, 'base64').toString('binary');
+
         }
-        console.log('`` ',imagebase64,'+')
+        console.log('`` ', imagebase64, '+')
         this.setState({
             email: user.email,
             password: 'hardcode',
@@ -210,9 +210,9 @@ class UserRedux extends Component {
             gender: user.gender,
             role: user.roleid,
             avatar: '',
-            previewimage:imagebase64,
+            previewimage: imagebase64,
             action: CRUD_ACTIONS.EDIT,
-            avatar:imagebase64,
+            avatar: imagebase64,
             userEditid: user.id
         })
 
@@ -228,8 +228,8 @@ class UserRedux extends Component {
         let isLoadingGender = this.props.isLoadingGender
 
         let { email, password, firstName, lastName, phoneNumber, address, position, role, avatar, gender } = this.state
-        
-        console.log(arrGender,arrPosition,arrRole)
+
+        console.log(arrGender, arrPosition, arrRole)
         console.log(gender, position, role)
         console.log(this.state)
         return (
@@ -263,13 +263,13 @@ class UserRedux extends Component {
                                     </div>
                                     <div className="form-group col-3">
                                         <label htmlFor="inputPassword4"><FormattedMessage id={"manage-user.first-name"} /></label>
-                                        <input type="password" className="form-control" id="inputPassword4" placeholder="Password"
+                                        <input type="text" className="form-control" id="inputPassword4" placeholder="firstName"
                                             value={firstName || ''}
                                             onChange={(event) => this.onChangeInput(event, 'firstName')} />
                                     </div>
                                     <div className="form-group col-3">
                                         <label htmlFor="inputPassword4"><FormattedMessage id={"manage-user.last-name"} /></label>
-                                        <input type="password" className="form-control" id="inputPassword4" placeholder="Password"
+                                        <input type="text" className="form-control" id="inputPassword4" placeholder="lastName"
                                             value={lastName || ''}
                                             onChange={(event) => this.onChangeInput(event, 'lastName')} />
                                     </div>
@@ -283,7 +283,7 @@ class UserRedux extends Component {
                                     </div>
                                     <div className="form-group col-9">
                                         <label htmlFor="inputPassword4"><FormattedMessage id={"manage-user.address"} /></label>
-                                        <input type="password" className="form-control" id="inputPassword4" placeholder="Password"
+                                        <input type="text" className="form-control" id="inputPassword4" placeholder="address"
                                             value={address}
                                             onChange={(event) => this.onChangeInput(event, 'address')} />
                                     </div>
