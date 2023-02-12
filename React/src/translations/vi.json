@@ -61,6 +61,9 @@
             "manage-specialty": "quan li chuyên khoa",
             "handbook": "cam nang",
             "manage-handbook": "quan li cam  nang"
+        },
+        "doctor": {
+            "manage-schedule": "quan li ke hoach kham benh "
         }
     },
     "manage-user": {
@@ -75,7 +78,7 @@
         "position": "chuc danh",
         "role": "vai tro ",
         "save": "luu user",
-        "image":"Anh dai dien",
+        "image": "Anh dai dien",
         "edit": "edit user"
     },
     "system": {

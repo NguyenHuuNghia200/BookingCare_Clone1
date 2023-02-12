@@ -6,13 +6,33 @@ import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../utils'
 import { ChangelanguageApp } from '../../store/actions/appActions';
 import { withRouter } from 'react-router-dom';
+import _ from 'lodash';
+import { USER_ROLE } from '../../utils';
+
 class HomeHeader extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            nemuApp: []
+        }
+    }
     changeLanguage = (language) => {
         this.props.ChangelanguageApp(language)
     }
     returntohome = () => {
         this.props.history.push('/homepage')
+    }
+    componentDidMount() {
+        let { userInfo } = this.props
+        let menu = []
+        console.log(userInfo.roleid, '11')
+        if (userInfo && !_.isEmpty(userInfo)) {
+            let role = userInfo.roleid
+            if (role === USER_ROLE.ADMIN) {
+                menu = 'admin'
+            }
+        }
     }
     render() {
         let languages = this.props.language

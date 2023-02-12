@@ -3,22 +3,58 @@ import { connect } from 'react-redux';
 
 import * as actions from "../../store/actions";
 import Navigator from '../../components/Navigator';
-import { adminMenu } from './menuApp';
+import { adminMenu, doctorMenu } from './menuApp';
 import './Header.scss';
 import { LANGUAGES } from '../../utils'
-
+import _ from 'lodash';
+import { USER_ROLE } from '../../utils';
 class Header extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            menuApp: [],
+            RoleUser: ''
+        }
+    }
     changeLanguage = (language) => {
         this.props.ChangelanguageApp(language)
     }
+    componentDidMount() {
+        let { userInfo } = this.props
+
+        let menu = []
+
+        if (userInfo && userInfo.user.roleid) {
+            let role = userInfo.user.roleid
+            if (role === USER_ROLE.ADMIN) {
+                menu = adminMenu
+            }
+            if (role === USER_ROLE.DOCTOR) {
+                menu = doctorMenu
+            }
+        }
+        console.log(menu, '11')
+        console.log(doctorMenu, 'doctorMenu')
+        console.log(adminMenu, 'adminMenu1')
+        this.setState({
+            menuApp: menu,
+            RoleUser: userInfo.user.roleid
+        })
+    }
     render() {
         const { processLogout, language, userInfo } = this.props;
-        console.log(userInfo.user,'----- check user infor header')
+        let menuApp = this.state.menuApp
+        let RoleUser = this.state.RoleUser
+        //RoleUser === 'R1' console.log(userInfo.user, '----- check user infor header')
+        console.log('menuApp', menuApp)
         return (
             <div className="header-container">
                 {/* thanh navigator */}
                 <div className="header-tabs-container">
-                    <Navigator menus={adminMenu} />
+                    {/* <Navigator menus={RoleUser === 'R1' ? adminMenu : doctorMenu} /> */}
+
+
+                    <Navigator menus={menuApp} />
                 </div>
                 <div className='languages'>
                     <span className='welcome'>welcome {userInfo.user && userInfo.user.firstName ? userInfo.user.firstName : ''} !   </span>

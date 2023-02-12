@@ -21,6 +21,8 @@ import ConfirmModal from '../components/ConfirmModal';
 import HomePage from './HomePage/HomePage.js'
 import CustomScrollbars from '../components/CustomScrollbars';
 import DetailDoctor from './patient/Doctor/DetailDoctor';
+//import Doctor from '../routes/Doctor';
+import ManageShedule from './System/Doctor/ManageShedule';
 class App extends Component {
 
     handlePersistorState = () => {
@@ -47,7 +49,7 @@ class App extends Component {
 
                 <Router history={history}>
                     <div className="main-container">
-                        
+
                         <ConfirmModal />
 
 
@@ -57,8 +59,10 @@ class App extends Component {
                                     <Route path={path.HOME} exact component={(Home)} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
+                                    <Route path={'/doctor'} component={userIsAuthenticated(ManageShedule)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
                                     <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
+
                                 </Switch>
                             </CustomScrollbars>
                         </div>

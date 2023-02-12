@@ -1,14 +1,14 @@
 {
-    "home-header":{
-        "speciality":"speciality",
-        "searchdocter":"Find a doctor by specialty",
+    "home-header": {
+        "speciality": "speciality",
+        "searchdocter": "Find a doctor by specialty",
         "Health-facilities": "Health facilities",
-        "Choose-hospital-clinic":"Choose-hospital-clinic",
-        "Doctor":"Doctor",
-        "Choose-doctor":"Choose a good doctor",
-        "fee":"Fee",
-        "General-health-check":"General health check",
-        "support":"Support"
+        "Choose-hospital-clinic": "Choose-hospital-clinic",
+        "Doctor": "Doctor",
+        "Choose-doctor": "Choose a good doctor",
+        "fee": "Fee",
+        "General-health-check": "General health check",
+        "support": "Support"
     },
     "common": {
         "add": "Add",
@@ -45,37 +45,38 @@
                 "user-redux": "Manage User redux",
                 "register-package-group-or-account": "Register service package for group/account"
             }
-            
         },
-        "admin":{
-            "manage-user":"User Management",
-            "manage-doctor":"Doctor management",
-            "manage-admin":"Admin Management",
+        "admin": {
+            "manage-user": "User Management",
+            "manage-doctor": "Doctor management",
+            "manage-admin": "Admin Management",
             "crud": "crud user",
             "crud-redux": "crud user-redux",
-            "clinic":"clinic",
-            "manage-clinic":"clinic manager",
-            "specialty":"specialty khoa",
-            "manage-specialty":"specialty manager",
-            "handbook":"handbook",
-            "manage-handbook":"handbook manager"
+            "clinic": "clinic",
+            "manage-clinic": "clinic manager",
+            "specialty": "specialty khoa",
+            "manage-specialty": "specialty manager",
+            "handbook": "handbook",
+            "manage-handbook": "handbook manager"
+        },
+        "doctor": {
+            "manage-schedule": "Manage Doctor's shedule"
         }
-
     },
-    "manage-user":{
-        "add":"Add a new user",
-        "email":"Email",
-        "password":"Password",
-        "first-name":"First Name",
-        "last-name":"Last Name",
-        "phone-number":"Phone number",
-        "address":"Address",
-        "gender":"gender",
-        "position":"position",
-        "role":"role ",
-        "save":"save user",
+    "manage-user": {
+        "add": "Add a new user",
+        "email": "Email",
+        "password": "Password",
+        "first-name": "First Name",
+        "last-name": "Last Name",
+        "phone-number": "Phone number",
+        "address": "Address",
+        "gender": "gender",
+        "position": "position",
+        "role": "role ",
+        "save": "save user",
         "edit": "edit user",
-        "image":"image"
+        "image": "image"
     },
     "system": {
         "user-manage": {
