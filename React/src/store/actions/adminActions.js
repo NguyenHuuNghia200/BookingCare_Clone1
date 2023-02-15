@@ -1,5 +1,7 @@
-import { getAllCodeService, CreateUserApi, GetAllUserApi, DeleteUserApi, EditUserApi, getTopDoctorService,
-    getListDoctor,getSaveinFoDoctor,getInfoFoDoctor } from '../../services/UserService';
+import {
+    getAllCodeService, CreateUserApi, GetAllUserApi, DeleteUserApi, EditUserApi, getTopDoctorService,
+    getListDoctor, getSaveinFoDoctor, getInfoFoDoctor
+} from '../../services/UserService';
 import actionTypes from './actionTypes';
 import { toast, Toast } from 'react-toastify';
 // export const adminLoginSuccess = (adminInfo) => ({
@@ -291,7 +293,7 @@ export const fetchSaveDoctor = (datainput) => {
     return async (dispatch, getState) => {
         try {
             let data = await getSaveinFoDoctor(datainput)
-            console.log('datainput',datainput,data)
+            console.log('datainput', datainput, data)
             if (data.errCode === 0) {
                 toast.success('save info doctor complete')
                 dispatch({
@@ -306,7 +308,7 @@ export const fetchSaveDoctor = (datainput) => {
                 })
             }
         } catch (error) {
-            console.log('failed2',error)
+            console.log('failed2', error)
             toast.error('save info doctor complete')
             dispatch({
 
@@ -322,7 +324,7 @@ export const fetchSaveDoctor = (datainput) => {
 //     return async (dispatch, getState) => {
 //         try {
 //             let data = await getInfoFoDoctor(datainput)
-            
+
 //             if (data.errCode === 0) {
 //                 dispatch({
 //                     type: actionTypes.FETCH_GET_DOCTOR_SUCCESS,
@@ -347,3 +349,30 @@ export const fetchSaveDoctor = (datainput) => {
 
 //     // type: actionTypes.FETCH_GENDER_START
 // }
+
+
+export const fetchGetTimeStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            //dispatch({ type: actionTypes.FETCH_GENDER_START })
+            let res = await getAllCodeService('time')
+            console.log('res', res.data.data)
+            if (res.data && res.data.errCode == 0) {
+                dispatch({
+                    type: actionTypes.FETCH_GET_TIME_SUCCESS,
+                    data: res.data.data
+                })
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_GET_TIME_FAILED
+                })
+            }
+        } catch (error) {
+            dispatch({
+                type: actionTypes.FETCH_GET_TIME_FAILED
+            })
+        }
+    }
+
+    // type: actionTypes.FETCH_GENDER_START
+}

@@ -30,6 +30,9 @@
         "sum": "Sum",
         "date-range-invalid": "Date range invalid"
     },
+    "shedule": {
+        "title": "manage shedule"
+    },
     "login": {
         "login": "Login",
         "username": "Username",

@@ -40,7 +40,7 @@ class Login extends Component {
         })
         try {
             let data = await handleLoginApi(this.state.username, this.state.password)
-            
+
             if (data && data.errCode !== 0) {
                 this.setState({
                     errMessage: data.message
@@ -58,7 +58,7 @@ class Login extends Component {
                     })
                 }
             }
-            
+
 
         }
     }
@@ -66,6 +66,11 @@ class Login extends Component {
         this.setState({
             isShowPassword: !this.state.isShowPassword
         })
+    }
+    handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            this.handleLogin()
+        }
     }
     render() {
         return (
@@ -89,7 +94,10 @@ class Login extends Component {
 
                                     className='form-control'
                                     placeholder='Enter your Password'
-                                    onChange={(event) => this.handleOnChangePassword(event)} />
+                                    onChange={(event) => this.handleOnChangePassword(event)}
+                                    onKeyDown={() => this.handleKeyDown()} />
+
+
                                 <span onClick={() => this.handleShowhiden()}>
                                     <i className={this.state.isShowPassword ? 'fas fa-eye' : 'fas fa-eye-slash'}></i>
                                 </span>

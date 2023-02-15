@@ -8,7 +8,8 @@ const initialState = {
     users: [],
     topDoctor: [],
     listDoctor: [],
-    infoDoctor:[]
+    infoDoctor: [],
+    listTime: []
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -116,6 +117,22 @@ const adminReducer = (state = initialState, action) => {
             }
 
 
+
+
+
+        case actionTypes.FETCH_GET_TIME_SUCCESS:
+            state.listTime = action.data
+
+            return {
+                ...state,
+
+            }
+        case actionTypes.FETCH_GET_TIME_FAILED:
+            state.listTime = []
+            return {
+                ...state,
+
+            }
 
 
         // case actionTypes.FETCH_GET_DOCTOR_SUCCESS:

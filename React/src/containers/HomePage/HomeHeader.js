@@ -24,19 +24,20 @@ class HomeHeader extends Component {
         this.props.history.push('/homepage')
     }
     componentDidMount() {
-        let { userInfo } = this.props
-        let menu = []
-        console.log(userInfo.roleid, '11')
-        if (userInfo && !_.isEmpty(userInfo)) {
-            let role = userInfo.roleid
-            if (role === USER_ROLE.ADMIN) {
-                menu = 'admin'
-            }
-        }
+        // let { userInfo } = this.props
+        // let menu = []
+        // console.log(userInfo.roleid, '11')
+        // if (userInfo && !_.isEmpty(userInfo)) {
+        //     let role = userInfo.roleid
+        //     if (role === USER_ROLE.ADMIN) {
+        //         menu = 'admin'
+        //     }
+        // }
     }
     render() {
         let languages = this.props.language
         let userInfo = this.props.userInfo
+        console.log(userInfo)
         return (
             <>
                 <div className='home-header-container'>

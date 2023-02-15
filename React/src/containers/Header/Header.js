@@ -33,9 +33,7 @@ class Header extends Component {
                 menu = doctorMenu
             }
         }
-        console.log(menu, '11')
-        console.log(doctorMenu, 'doctorMenu')
-        console.log(adminMenu, 'adminMenu1')
+
         this.setState({
             menuApp: menu,
             RoleUser: userInfo.user.roleid
@@ -46,7 +44,7 @@ class Header extends Component {
         let menuApp = this.state.menuApp
         let RoleUser = this.state.RoleUser
         //RoleUser === 'R1' console.log(userInfo.user, '----- check user infor header')
-        console.log('menuApp', menuApp)
+
         return (
             <div className="header-container">
                 {/* thanh navigator */}

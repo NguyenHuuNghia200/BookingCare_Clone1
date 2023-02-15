@@ -10,6 +10,9 @@
         "General-health-check": "Khám sức khỏe tổng quát",
         "support": "hỗ trợ"
     },
+    "shedule": {
+        "title": "quan li ke hoach kham benh"
+    },
     "common": {
         "add": "Thêm",
         "edit": "Sửa",

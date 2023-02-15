@@ -288,6 +288,8 @@ class UserRedux extends Component {
                                             onChange={(event) => this.onChangeInput(event, 'address')} />
                                     </div>
 
+
+
                                 </div>
                                 <div className="row">
                                     <div className="form-group col-3">
