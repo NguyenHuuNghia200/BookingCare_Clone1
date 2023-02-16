@@ -1,6 +1,10 @@
 import db from '../models/index.js'
 import bcrypt, { hash } from 'bcryptjs';
+import _ from 'lodash'
+
 const salt = bcrypt.genSaltSync(10);
+require('dotenv').config()
+const MAX_LENGTH_SCHEDULE = process.env.MAX_LENGTH_SCHEDULE
 let getAllDoctor = (limitinput) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -142,10 +146,71 @@ let getinfoDoctor = (inputid) => {
         }
     })
 }
+let getsaveinfoShedule = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            if (!data.data || !data.doctorId || !data.date) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'missing param'
+                })
+            } else {
+
+                let schedule = data.data
+                if (schedule && schedule.length > 0) {
+                    schedule = schedule.map(item => {
+                        item.maxNumber = MAX_LENGTH_SCHEDULE
+
+                        return item
+                    })
+
+                }
+                console.log('data', data.date)
+                console.log('schedule', schedule)
+
+
+
+                let existing = await db.schedules.findAll({
+                    where: { doctorId: data.doctorId, date: data.date }
+                })
+
+                if (existing && existing.length > 0) {
+                    existing = existing.map(item => {
+                        item.date = new Date(item.date).getTime()
+
+                        return item
+                    })
+
+                }
+
+                let toCreate = _.differenceWith(schedule, existing, (a, b) => {
+                    return a.timeType === b.timeType && a.date === b.date
+                })
+                // console.log('existing', existing)
+                // console.log('toCreate', toCreate)
+                if (toCreate && toCreate.length > 0) {
+                    console.log('ok')
+                    await db.schedules.bulkCreate(toCreate)
+                }
+
+                resolve({
+                    errCode: 0,
+                    errMessage: 'save complete'
+                })
+            }
+
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     getAllDoctor: getAllDoctor,
     getlistDoctor: getlistDoctor,
     getsaveinfoDoctor: getsaveinfoDoctor,
     getinfoDoctor: getinfoDoctor,
+    getsaveinfoShedule: getsaveinfoShedule,
 
 }

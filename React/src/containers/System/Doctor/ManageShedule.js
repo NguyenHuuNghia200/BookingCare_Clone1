@@ -11,6 +11,7 @@ import DatePicker from '../../../components/Input/DatePicker';
 import FormattedDate from '../../../components/Formating/FormattedDate'
 import moment from 'moment';
 import _, { result, size } from 'lodash';
+import { SavebulkShedule } from '../../../services/UserService';
 import { toast, Toast } from 'react-toastify';
 class ManageShedule extends Component {
     constructor(props) {
@@ -99,7 +100,7 @@ class ManageShedule extends Component {
         })
 
     }
-    handlesaveshedule = () => {
+    handlesaveshedule = async () => {
         let doctor = this.state.selectedOption
         let currentDate = this.state.currentDate
         let arrTime = []
@@ -114,17 +115,19 @@ class ManageShedule extends Component {
             toast.error('missing param day')
             return
         }
-        let date = moment(currentDate).format(dateFormat.SEND_TO_SERVER)
-
+        //let date1 = moment(currentDate).format(dateFormat.SEND_TO_SERVER)
+        //let date1 = moment(currentDate).unix()
+        let date1 = new Date(currentDate).getTime()
+        console.log(date1, 'date1')
         if (arrTime && arrTime.length > 0) {
             let selected = arrTime.filter(item => item.isSelect === true)
             console.log(selected)
             if (selected && selected.length > 0) {
                 selected.map((item) => {
                     let object = {}
-                    object.doctor = doctor.value
-                    object.currentDate = date
-                    object.time = item.key
+                    object.doctorId = doctor.value
+                    object.date = date1
+                    object.timeType = item.key
                     result.push(object)
                 })
 
@@ -134,6 +137,13 @@ class ManageShedule extends Component {
                 return
             }
         }
+        console.log('check res', result)
+        let res = await SavebulkShedule({
+            data: result,
+            doctorId: doctor.value,
+            date: date1
+        })
+
     }
     render() {
 

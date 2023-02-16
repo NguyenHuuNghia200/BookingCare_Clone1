@@ -14,7 +14,7 @@ const handleLoginApi = (email, password) => {
     //   });
 }
 const GetAllUserApi = (userId) => {
-    
+
     return axios.get(`/api/get-all-user?id=${userId}`)
 }
 const CreateUserApi = (data) => {
@@ -24,28 +24,31 @@ const CreateUserApi = (data) => {
 const DeleteUserApi = (userid) => {
 
     return axios.delete('/api/delete-user', {
-        params:{id: userid }
+        params: { id: userid }
     })
 }
-const EditUserApi=(inputdata)=>{
-  
+const EditUserApi = (inputdata) => {
+
     return axios.put('/api/edit-user', inputdata
     )
 }
-const getAllCodeService=(input)=>{
+const getAllCodeService = (input) => {
     return axios.get(`/api/allcode?type=${input}`)
 }
-const getTopDoctorService=(input)=>{
+const getTopDoctorService = (input) => {
     return axios.get(`/api/allDoctor?limit=${input}`)
 }
-const getListDoctor=()=>{
+const getListDoctor = () => {
     return axios.get(`/api/listDoctor`)
 }
-const getSaveinFoDoctor=(data)=>{
-    return axios.post('/api/Save-info-doctor',data)
+const getSaveinFoDoctor = (data) => {
+    return axios.post('/api/Save-info-doctor', data)
 }
-const getInfoFoDoctor=(data)=>{
+const getInfoFoDoctor = (data) => {
     return axios.get(`/api/get-info-doctor?id=${data}`)
+}
+const SavebulkShedule = (data) => {
+    return axios.post(`/api/bulk-create-shedule`, data)
 }
 export {
     handleLoginApi,
@@ -57,5 +60,7 @@ export {
     getTopDoctorService,
     getListDoctor,
     getSaveinFoDoctor,
-    getInfoFoDoctor
+    getInfoFoDoctor,
+    SavebulkShedule
+
 }

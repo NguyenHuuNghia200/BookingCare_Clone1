@@ -88,9 +88,29 @@ let handleGetinfoDoctor = async (req, res) => {
         console.log(e)
     }
 }
+let handleSaveinfoshedule = async (req, res) => {
+    try {
+        try {
+            console.log(req.body)
+            let data = await DoctorServices.getsaveinfoShedule(req.body)
+            return res.status(200).json(
+                data
+            )
+        } catch (error) {
+            console.log(error)
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: 'Error from server'
+            })
+        }
+    } catch (e) {
+        console.log(e)
+    }
+}
 module.exports = {
     handlegetAllDoctor: handlegetAllDoctor,
     handleListDoctor: handleListDoctor,
     handleSaveinfoDoctor: handleSaveinfoDoctor,
-    handleGetinfoDoctor: handleGetinfoDoctor
+    handleGetinfoDoctor: handleGetinfoDoctor,
+    handleSaveinfoshedule: handleSaveinfoshedule,
 }
