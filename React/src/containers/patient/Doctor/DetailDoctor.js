@@ -5,6 +5,7 @@ import './DetailDoctor.scss'
 import * as actions from '../../../store/actions'
 import { fetchGetDoctor } from '../../../store/actions';
 import { getInfoFoDoctor } from '../../../services/UserService';
+import DoctorSchedule from './DoctorSchedule';
 class DetailDoctor extends Component {
 
 
@@ -20,7 +21,7 @@ class DetailDoctor extends Component {
 
         if (this.props.match && this.props.match.params && this.props.match.params.id) {
             let doctor = await getInfoFoDoctor(this.props.match.params.id)
-            console.log(doctor)
+
             let imagetest = doctor.data.image
             // let image1 = ''
             // if (doctor.data && doctor.data.image) {
@@ -37,8 +38,7 @@ class DetailDoctor extends Component {
 
     render() {
         let infoDoctor1 = this.state.infoDoctor
-        console.log(this.state.infoDoctor)
-        console.log(infoDoctor1.markdown)
+
         return (
             <>
                 <HomeHeader Isshowbanner={false} />
@@ -67,8 +67,13 @@ class DetailDoctor extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className='scheule-doctor'>
+                    <div className='schedule-doctor'>
+                        <div className='content-left'>
+                            <DoctorSchedule infoDoctor={this.state.infoDoctor} />
+                        </div>
+                        <div className='content-right'>
 
+                        </div>
                     </div>
                     <div className='detail-infor-doctor'>
 

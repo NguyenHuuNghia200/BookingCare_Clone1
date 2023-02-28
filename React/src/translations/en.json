@@ -30,8 +30,8 @@
         "sum": "Sum",
         "date-range-invalid": "Date range invalid"
     },
-    "shedule": {
-        "title": "manage shedule"
+    "schedule": {
+        "title": "manage schedule"
     },
     "login": {
         "login": "Login",
@@ -63,7 +63,7 @@
             "manage-handbook": "handbook manager"
         },
         "doctor": {
-            "manage-schedule": "Manage Doctor's shedule"
+            "manage-schedule": "Manage Doctor's schedule"
         }
     },
     "manage-user": {

@@ -36,4 +36,18 @@
         margin: 30px 30px;
         background-color: #ddd;
     }
+    .schedule-doctor{
+        margin :0 100px;
+        height: 200px;
+        display: flex;
+        min-height: 150px;
+        .content-left{
+            width: 50%;
+            border: 1px solid red;
+        }
+        .content-right{
+            width: 50%;
+            border: 1px solid red;
+        }
+    }
 }

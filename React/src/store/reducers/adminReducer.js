@@ -135,20 +135,20 @@ const adminReducer = (state = initialState, action) => {
             }
 
 
-        // case actionTypes.FETCH_GET_DOCTOR_SUCCESS:
-        //     state.infoDoctor = action.infoDoctor
+        case actionTypes.FETCH_GET_DOCTOR_SUCCESS:
+            state.infoDoctor = action.infoDoctor
 
-        //     return {
-        //         ...state,
+            return {
+                ...state,
 
-        //     }
-        // case actionTypes.FETCH_GET_DOCTOR_FAILED:
-        //     state.infoDoctor = []
-        //     console.log('failed')
-        //     return {
-        //         ...state,
+            }
+        case actionTypes.FETCH_GET_DOCTOR_FAILED:
+            state.infoDoctor = []
+            console.log('failed')
+            return {
+                ...state,
 
-        //     }
+            }
         default:
             return state;
     }

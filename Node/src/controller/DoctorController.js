@@ -107,10 +107,30 @@ let handleSaveinfoshedule = async (req, res) => {
         console.log(e)
     }
 }
+let getschedulebydate = async (req, res) => {
+    try {
+        try {
+            console.log(req.query.doctorId, req.query.date, '------------')
+            let data = await DoctorServices.getschedulebydateService(req.query.doctorId, req.query.date)
+            return res.status(200).json(
+                data
+            )
+        } catch (error) {
+            console.log(error)
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: 'Error from server'
+            })
+        }
+    } catch (e) {
+        console.log(e)
+    }
+}
 module.exports = {
     handlegetAllDoctor: handlegetAllDoctor,
     handleListDoctor: handleListDoctor,
     handleSaveinfoDoctor: handleSaveinfoDoctor,
     handleGetinfoDoctor: handleGetinfoDoctor,
     handleSaveinfoshedule: handleSaveinfoshedule,
+    getschedulebydate: getschedulebydate
 }

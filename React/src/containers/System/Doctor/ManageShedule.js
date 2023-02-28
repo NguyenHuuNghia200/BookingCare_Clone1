@@ -143,7 +143,7 @@ class ManageShedule extends Component {
             doctorId: doctor.value,
             date: date1
         })
-
+        console.log('res', res)
     }
     render() {
 
@@ -155,9 +155,9 @@ class ManageShedule extends Component {
         return (
             <>
                 {this.props.isLoggedIn && <Header />}
-                <div className="manage-shedule-container">
+                <div className="manage-schedule-container">
                     <div className='m-s-title'>
-                        <FormattedMessage id={"shedule.title"} />
+                        <FormattedMessage id={"schedule.title"} />
                     </div>
                     <div className='container'>
                         <div className='row'>
@@ -174,19 +174,20 @@ class ManageShedule extends Component {
                                 <label>chon ngay</label>
                                 <DatePicker
                                     onChange={(value) => this.hanleOnChangdatepicker(value)}
-                                    minDate={new Date()} />
+                                    minDate={new Date(new Date().setDate(new Date().getDate() - 1))} />
                             </div>
                             <div className='col-12 day-container mt-3'>
                                 {arrTime && arrTime.length > 0 &&
                                     arrTime.map((item, index) => {
 
                                         return (
-                                            <button key={index} className={item.isSelect === true ? "btn btn-shedule active" : "btn btn-shedule"}
+                                            <button key={index} className={item.isSelect === true ? "btn btn-schedule active" : "btn btn-schedule"}
                                                 onClick={() => this.handleChangSelect(item)}>
                                                 {language === LANGUAGES.VI ? item.valueVN : item.valueEn}
                                             </button>
                                         )
-                                    })}
+                                    })
+                                }
                             </div>
                             <div className='col-12'>
 

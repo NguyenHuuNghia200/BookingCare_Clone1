@@ -356,7 +356,7 @@ export const fetchGetTimeStart = () => {
         try {
             //dispatch({ type: actionTypes.FETCH_GENDER_START })
             let res = await getAllCodeService('time')
-            console.log('res', res.data.data)
+
             if (res.data && res.data.errCode == 0) {
                 dispatch({
                     type: actionTypes.FETCH_GET_TIME_SUCCESS,

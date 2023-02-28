@@ -172,20 +172,22 @@ let getsaveinfoShedule = (data) => {
 
 
                 let existing = await db.schedules.findAll({
-                    where: { doctorId: data.doctorId, date: data.date }
+                    where: { doctorId: data.doctorId, date: data.date },
+
+                    raw: false
                 })
 
-                if (existing && existing.length > 0) {
-                    existing = existing.map(item => {
-                        item.date = new Date(item.date).getTime()
+                // if (existing && existing.length > 0) {
+                //     existing = existing.map(item => {
+                //         item.date = new Date(item.date).getTime()
 
-                        return item
-                    })
+                //         return item
+                //     })
 
-                }
+                // }
 
                 let toCreate = _.differenceWith(schedule, existing, (a, b) => {
-                    return a.timeType === b.timeType && a.date === b.date
+                    return a.timeType === b.timeType && +a.date === +b.date
                 })
                 // console.log('existing', existing)
                 // console.log('toCreate', toCreate)
@@ -206,11 +208,47 @@ let getsaveinfoShedule = (data) => {
         }
     })
 }
+
+let getschedulebydateService = (doctorid, date) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            console.log(doctorid, date, '----------')
+            if (!doctorid || !date) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'missing param'
+                })
+            } else {
+                let doctorschedule = await db.schedules.findAll({
+                    where: {
+                        doctorId: doctorid,
+                        date: date
+                    },
+                    include: [
+                        { model: db.Allcodes, as: 'timeTypeData', attributes: ['valueEn', 'valueVn'] },
+                    ],
+                    nest: true,
+                    raw: false
+                })
+                console.log(doctorschedule, '---')
+                if (!doctorschedule) doctorschedule = []
+                resolve({
+                    errCode: 0,
+                    data: doctorschedule
+                })
+            }
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     getAllDoctor: getAllDoctor,
     getlistDoctor: getlistDoctor,
     getsaveinfoDoctor: getsaveinfoDoctor,
     getinfoDoctor: getinfoDoctor,
     getsaveinfoShedule: getsaveinfoShedule,
+    getschedulebydateService: getschedulebydateService
 
 }

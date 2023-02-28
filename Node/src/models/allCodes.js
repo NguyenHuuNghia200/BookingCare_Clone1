@@ -2,7 +2,7 @@
 const {
   Model
 } = require('sequelize');
-const  Sequelize  = require('.');
+const Sequelize = require('.');
 module.exports = (sequelize, DataTypes) => {
   class Allcodes extends Model {
     /**
@@ -12,17 +12,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      
-      Allcodes.hasMany(models.User,{foreignKey:'positionId',as:'positionIdData'})
-      Allcodes.hasMany(models.User,{foreignKey:'gender',as:'genderData'})
+
+      Allcodes.hasMany(models.User, { foreignKey: 'positionId', as: 'positionIdData' })
+      Allcodes.hasMany(models.User, { foreignKey: 'gender', as: 'genderData' })
+      Allcodes.hasMany(models.schedules, { foreignKey: 'timeType', as: 'timeTypeData' })
+
     }
   };
   Allcodes.init({
-    
+
     key: DataTypes.STRING,
     type: DataTypes.STRING,
-    valueEn:DataTypes.STRING,
-    valueVN:DataTypes.STRING
+    valueEn: DataTypes.STRING,
+    valueVN: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Allcodes',

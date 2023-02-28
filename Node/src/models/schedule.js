@@ -2,7 +2,7 @@
 const {
   Model
 } = require('sequelize');
-const  Sequelize  = require('.');
+const Sequelize = require('.');
 module.exports = (sequelize, DataTypes) => {
   class schedules extends Model {
     /**
@@ -12,16 +12,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      schedules.belongsTo(models.Allcodes, { foreignKey: 'timeType', targetKey: 'key', as: 'timeTypeData' })
     }
   };
   schedules.init({
-    
+
     currentNumber: DataTypes.INTEGER,
     maxNumber: DataTypes.INTEGER,
-    date: DataTypes.DATE,
-    timeType:DataTypes.STRING,
-    doctorId:DataTypes.INTEGER,
-    
+    date: DataTypes.STRING,
+    timeType: DataTypes.STRING,
+    doctorId: DataTypes.INTEGER,
+
   }, {
     sequelize,
     modelName: 'schedules',
