@@ -1,4 +1,6 @@
 .doctor-schedule-container{
+    border-right: 1px solid #ddd;
+    height: auto;
     .all-schedule{
         select{
             border-bottom: 1px solid #ddd;
@@ -29,11 +31,11 @@
             }
         }
         .time-content{
-            
+            .time-content-btns{
             display: flex;
             gap: 30px;
             flex-wrap: wrap;
-            button{
+                button{
                 padding: 8px 10px;
                 min-width: 160px;
                 padding: 5px 10px;
@@ -44,15 +46,19 @@
                 color: #333;
                 background-color: #fff04b;
 
-                &:hover{
+                    &:hover{
                     background-color: #45c3d2;
                     color: white;
+                    }
                 }
-            }
-            .btn-schedule{
-                &.active{
+                .btn-schedule{
+                    &.active{
                     background-color: orange;
-                }
+                    }
+                 }
+            }
+            .book-free{
+               margin-top: 20px;
             }
         }
     }

@@ -1,12 +1,12 @@
 .doctor-detail-container {
     height: auto;
-    margin: 0 100px;
-    border: 1px solid red;
-
+    margin-right: auto;
+    margin-left: auto;
+  
     .intro-doctor {
         display: flex;
         height: 250px;
-
+        margin: 0 100px;
         .content-left {
             width: 30%;
             border: 1px solid blue;
@@ -33,21 +33,28 @@
         }
     }
     .detail-infor-doctor{
-        margin: 30px 30px;
-        background-color: #ddd;
+        margin-top: 30px;
+        //background-color: #ddd;
+        border-top: 1px solid #ddd;
+        padding: 50px;
+        .test1{
+            margin: 0 100px;
+        }
     }
     .schedule-doctor{
-        margin :0 100px;
-        height: 200px;
+        margin :0 150px;
+        
         display: flex;
-        min-height: 150px;
+        min-height: 200px;
+        
         .content-left{
             width: 50%;
-            border: 1px solid red;
+            
+           
         }
         .content-right{
             width: 50%;
-            border: 1px solid red;
+           
         }
     }
 }

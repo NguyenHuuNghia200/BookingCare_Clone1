@@ -78,7 +78,7 @@ class DetailDoctor extends Component {
                     <div className='detail-infor-doctor'>
 
                         {infoDoctor1.markdown && infoDoctor1.markdown.contentHtml &&
-                            <div dangerouslySetInnerHTML={{ __html: infoDoctor1.markdown.contentHtml }}>
+                            <div className='test1' dangerouslySetInnerHTML={{ __html: infoDoctor1.markdown.contentHtml }}>
 
                             </div>
                         }

@@ -195,18 +195,28 @@ class DoctorSchedule extends Component {
                     </div>
                     <div className='time-content'>
                         {arrTime1 && arrTime1.length > 0 ?
-                            arrTime1.map((item, index) => {
+                            <>
+                                <div className='time-content-btns'>
+                                    {arrTime1.map((item, index) => {
 
-                                return (
-                                    <button key={index} className={item.isSelect === true ? "btn btn-schedule active" : "btn btn-schedule"}
-                                        onClick={() => this.handleChangSelect(item)}>
-                                        {language === LANGUAGES.VI ? item.timeTypeData.valueVn : item.timeTypeData.valueEn}
-                                    </button>
-                                )
-                            })
+                                        return (
+                                            <button key={index} className={item.isSelect === true ? "btn btn-schedule active" : "btn btn-schedule"}
+                                                onClick={() => this.handleChangSelect(item)}>
+                                                {language === LANGUAGES.VI ? item.timeTypeData.valueVn : item.timeTypeData.valueEn}
+                                            </button>
+                                        )
+                                    })
+                                    }
+                                </div>
+                                <div className='book-free'>
+                                    <span>Chon<i className='far fa-hand-point-up'></i> va dat mien phi</span>
+                                </div>
+
+                            </>
                             :
                             <div> khong co lich hen trong thoi gian nay</div>
                         }
+
                     </div>
                 </div>
 

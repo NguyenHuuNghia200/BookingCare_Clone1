@@ -68,6 +68,7 @@ class Login extends Component {
         })
     }
     handleKeyDown = (event) => {
+        console.log(event.keyCode, '1')
         if (event.key === "Enter") {
             this.handleLogin()
         }
@@ -95,7 +96,7 @@ class Login extends Component {
                                     className='form-control'
                                     placeholder='Enter your Password'
                                     onChange={(event) => this.handleOnChangePassword(event)}
-                                    onKeyDown={() => this.handleKeyDown()} />
+                                    onKeyDown={(event) => this.handleKeyDown(event)} />
 
 
                                 <span onClick={() => this.handleShowhiden()}>

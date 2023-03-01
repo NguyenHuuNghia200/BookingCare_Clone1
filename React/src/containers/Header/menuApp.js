@@ -23,13 +23,8 @@ export const adminMenu = [
 
             // },
             {
-                name: 'menu.doctor.manage-schedule',
-                menus: [
-                    {
-                        name: 'menu.admin.crud', link: '/system/user-manage'
 
-                    },
-                ]
+                name: 'menu.doctor.manage-schedule', link: '/doctor/doctor-manage'
             },
 
 
